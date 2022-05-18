@@ -10,15 +10,16 @@ from tkinter import ttk, filedialog
 root = tk.Tk()
 root.geometry("400x300")
 root.title('Santos Productivity')
-Label(root, text="Click the Button to browse the files", font='Georgia 13').pack(pady=25)
 
-root.file_name = ''
+Label(root, text="Click the Button to browse the files", font='Georgia 13').pack(pady=25)
 
 startdate = DateEntry(root, width=12, year=2022, month=5, day=15, background='white', foreground='black', borderwidth=2)
 startdate.place(x=40, y=140)
 
 enddate = DateEntry(root, width=12, year=2022, month=5, day=15, background='white', foreground='black', borderwidth=2)
 enddate.place(x=210, y=140)
+
+root.file_name = ''
 
 
 def open_file():
@@ -58,9 +59,6 @@ def main():
 
     sort = pd.DataFrame(filtered_df)
     print(sort.groupby(['Tested By']).count())
-
-    print(start_date)
-    print(end_date)
 
 
 b_chooseFile = ttk.Button(root, text="Chose File", width=20, command=open_file)
