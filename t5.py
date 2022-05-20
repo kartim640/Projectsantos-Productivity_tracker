@@ -1,10 +1,16 @@
+# CSV to file converted and executed to xlsx format and giving the output
+
+import os
 import openpyxl as ex
 from collections import OrderedDict
 import pprint
 
-path = "D:\\files_\\logic.xlsx"
+path = "/Users/kamuthuh/PycharmProjects/Projectsantos-Productivity_tracker/temp.xlsx"
 
 wb = ex.load_workbook(path)
+
+os.remove("/Users/kamuthuh/PycharmProjects/Projectsantos-Productivity_tracker/temp.xlsx")
+print("File Removed!")
 
 sheet = wb.active
 
@@ -17,8 +23,8 @@ res, file_ = {}, []
 
 # Loop will print all rows name
 for i in range(2, max_row + 1):
-    cell_obj_1 = sheet.cell(row=i, column=1)
-    cell_obj_2 = sheet.cell(row=i, column=2)
+    cell_obj_1 = sheet.cell(row=i, column=2)
+    cell_obj_2 = sheet.cell(row=i, column=5)
 
     file_.append((cell_obj_1.value, cell_obj_2.value))
 
@@ -27,9 +33,9 @@ print(f" length of file: {len(file_)}")
 
 def group_excel_by_date(file: list):
     """
-    file = [('Afreen', '18_05_2022'), {'Afreen', '17_05_2022')]
+    file = [('abcd', '18_05_2022'), {'abcd', '17_05_2022')]
     {
-	"Afreen": {
+	"abcd": {
 		"18_05_2022": 31,
 		"17_05_2022": 28,
 		"15_05_2022": 0
@@ -41,7 +47,7 @@ def group_excel_by_date(file: list):
     list_rows = file
 
     for item in list_rows:
-        #if the name hasn't been entered to dict yet
+        # if the name hasn't been entered to dict yet
         if item[0] not in res:
             res[item[0]] = {item[1]: 1}
         elif item[0] in res:

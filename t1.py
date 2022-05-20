@@ -36,7 +36,9 @@ def timestamp_cov(date):
 
 
 def ts_2_hrd(date):
-    return datetime.utcfromtimestamp(date)
+    # return datetime.utcfromtimestamp(date)
+    return datetime.fromtimestamp(date).strftime('%Y-%m-%d')
+
 
 
 def main():
@@ -59,7 +61,9 @@ def main():
     sort = pd.DataFrame(filtered_df)
     sort.pop('Human read datetime')
     sort.pop('Timestamp')
+    filtered_df.to_excel("Human read.xlsx")
     print(sort.groupby(['Tested By']).count())
+    #dig.to_excel('checking.xlsx')
 
     sum_of_count = (sort.groupby(['Tested By']).count()).sum()
     print(sum_of_count)
